@@ -1,8 +1,10 @@
+const config = require('./configConstants');
+
 const azureConfig = {
-    accountName : "stgarticle1",
-    accountKey : "",
-    containerName : "user-article",
-    blobName : "user-article"
+    accountName : config.azure_accountName,
+    accountKey : config.azure_accountKey,
+    containerName : config.azure_containerName,
+    blobName : config.azure_blobName
   };
   
 module.exports = azureConfig;

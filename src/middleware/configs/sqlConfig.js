@@ -1,9 +1,11 @@
+const config = require('./configConstants');
+
 const sqlConfig = {
-    user : "",
-    password:'',
-    server : "moviearticledb.database.windows.net",
-    database : "",
-    driver:"ODBC Driver 18 for SQL Server",
+    user : config.sql_user,
+    password:config.sql_password,
+    server : config.sql_server,
+    database : config.sql_database,
+    driver: config.sql_driver,
     options: {
         trustedConnection: true,
         trustServerCertificate: false 

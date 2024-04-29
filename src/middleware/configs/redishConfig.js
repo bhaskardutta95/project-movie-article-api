@@ -1,7 +1,9 @@
+const config = require('./configConstants');
+
 const redishConfig = {
-        host: "",
+        host: config.redis_host,
         port: 17047,
-        password: '',
+        password: config.redis_password,
     };
     
 module.exports =redishConfig

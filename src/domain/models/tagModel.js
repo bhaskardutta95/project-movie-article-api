@@ -4,7 +4,7 @@ const { setDateFormat, removeAttributeId } = require('../../middleware/configs/s
 const dbConstants = require('../../domain/constants/dbConstants');
 
 setDateFormat()
-const TagModel = SqlConnection.define('TAG', {
+const TagModel = SqlConnection.createSqlConnection().define('TAG', {
     guid: DataTypes.STRING,
     name: DataTypes.STRING,
     createdDate: DataTypes.DATE,
