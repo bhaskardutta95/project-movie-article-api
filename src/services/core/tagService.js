@@ -29,7 +29,7 @@ async function addTag(){
         modifiedDate : testDate
     };
     
-    await _addTag(insertTag);
+    await __tagData.addTag(insertTag);
 }
 
 async function addTags(bulkTags) {

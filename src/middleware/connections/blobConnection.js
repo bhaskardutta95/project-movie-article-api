@@ -12,10 +12,17 @@ const blobServiceClient = new BlobServiceClient(
 );
 
 async function uploadFileToBlobStorage(file) {
-  const containerClient = blobServiceClient.getContainerClient(containerName);
-  const blockBlobClient = containerClient.getBlockBlobClient(file.originalname);
-  await blockBlobClient.uploadFile(file.path);
-  return `File ${file.originalname} uploaded successfully.`;
+  try {
+    const containerClient = blobServiceClient.getContainerClient(containerName);
+    const blockBlobClient = containerClient.getBlockBlobClient(file.originalname);
+    await blockBlobClient.uploadFile(file.path);
+    const blobUrl = blockBlobClient.url;
+    const blobId = blockBlobClient.name;
+    return { url: blobUrl, id: blobId };
+  } catch (err) {
+    console.log('Error in uploading file ', err);
+    throw err;
+  }
 }
 
 module.exports = {
