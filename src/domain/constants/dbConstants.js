@@ -1,6 +1,17 @@
-const dbConstants = {
+const tableNames = {
     TagTableName : 'TAG',
     ArticleTableName : 'ARTICLE'
 }
 
-module.exports = dbConstants
+const columnNames = {
+    id: 'id',
+    guid : 'guid',
+    name : 'name',
+    createdDate : 'createdDate',
+    modifiedDate : 'modifiedDate'
+}
+
+module.exports = {
+    tableNames, 
+    columnNames
+}

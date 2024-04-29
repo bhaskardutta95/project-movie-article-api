@@ -1,10 +1,10 @@
 const { createClient } = require( 'redis');
-const azureConfig  = require( '../configs/redishConfig.js');
+const config = require('../configs/configConstants.js');
 
 const client = createClient({
-    host: azureConfig.host,
-    port: azureConfig.port,
-    password: azureConfig.password
+    host: config.redis_host,
+    port: config.redis_port,
+    password: config.redis_password
 });
 
 async function createRedisConnection () {

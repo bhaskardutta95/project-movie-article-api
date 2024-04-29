@@ -8,7 +8,7 @@ const app = express();
 app.use(json());
 app.use(urlencoded({ extended: true }));
 app.use("/api", storageController);
-app.use("/api", tagController);
+app.use("/api/tag", tagController);
 
 
 const port = process.env.PORT || 3000

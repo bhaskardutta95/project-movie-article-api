@@ -1,10 +1,11 @@
-const sqlConfig = require("../configs/sqlConfig.js");
 const Sequelize = require("sequelize");
+const { DATE } = require("sequelize");
+const config = require('../configs/configConstants.js');
 
-const SERVER = sqlConfig.server
-const DATABASE  = sqlConfig.database
-const USERNAME = sqlConfig.user
-const PASSWORD = sqlConfig.password
+const SERVER = config.sql_server
+const DATABASE  = config.sql_database
+const USERNAME = config.sql_user
+const PASSWORD = config.sql_password
 
 function createSqlConnection() {
   try{
@@ -31,24 +32,18 @@ function createSqlConnection() {
 
 }
 
-const sequelizeSqlConnection = new Sequelize(
-  DATABASE,
-  USERNAME,
-  PASSWORD,
-  {
-      dialect: 'mssql',
-      dialectOptions: {
-        options: {
-          encrypt: true 
-        }
-      },
-      host: SERVER, 
-    }
-);
+function setDateFormat() {
+  DATE.prototype._stringify = function _stringify(date, options) {
+      return this._applyTimezone(date, options).format('YYYY-MM-DD HH:mm:ss.SSS');
+  };
+}
 
-createSqlConnection()
+function removeAttributeId(Model) {
+  Model.removeAttribute('id')
+}
 
 module.exports = {
-  sequelizeSqlConnection,
-  createSqlConnection
+  createSqlConnection,
+  removeAttributeId,
+  setDateFormat
 }

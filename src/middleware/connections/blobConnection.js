@@ -1,9 +1,9 @@
-const  azureConfig  = require( '../configs/azureConfig.js');
 const { BlobServiceClient, StorageSharedKeyCredential } = require( "@azure/storage-blob");
+const config = require('../configs/configConstants.js');
 
-const accountName = azureConfig.accountName;
-const accountKey = azureConfig.accountKey;
-const containerName = azureConfig.containerName;
+const accountName = config.azure_accountName;
+const accountKey = config.azure_accountKey;
+const containerName = config.azure_containerName;
 
 const sharedKeyCredential = new StorageSharedKeyCredential(accountName, accountKey);
 const blobServiceClient = new BlobServiceClient(
