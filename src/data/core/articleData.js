@@ -1,4 +1,5 @@
 const ArticleModel  = require('../../domain/models/articleModel');
+const ArticleTagMappingModel = require('../../domain/models/articleTagMappingModel');
 
 const addArticle = async(articleData) => {
     try{
@@ -11,6 +12,30 @@ const addArticle = async(articleData) => {
     }
 }
 
+const addArticleTagMapping = async(articleTagMappingData) => {
+    try{
+        const articleTagMapping = await ArticleTagMappingModel.bulkCreate(articleTagMappingData);
+        const allSuccess = articleTagMapping.every((articleTag) => articleTag instanceof ArticleTagMappingModel);
+        return allSuccess;
+    } catch(err) {
+        console.log('Error in ArticleTagMapping');
+        throw err;
+    }
+
+}
+
+const getArticleIdByGuid = async(articleGuid) => {
+    const articleId = await ArticleModel.findOne({
+        where: {
+          guid: articleGuid
+        }, include: [id]
+      });
+    return articleId
+
+}
+
 module.exports = {
-    addArticle
+    addArticle,
+    addArticleTagMapping,
+    getArticleIdByGuid
 }

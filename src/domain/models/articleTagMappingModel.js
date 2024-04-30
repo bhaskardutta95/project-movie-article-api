@@ -3,16 +3,15 @@ const SqlConnection = require("../../middleware/connections/sqlConnection");
 const dbConstants = require('../../domain/constants/dbConstants');
 
 SqlConnection.setDateFormat()
-const TagModel = SqlConnection.createSqlConnection().define('TAG', {
+const ArticleTagMappingModel = SqlConnection.createSqlConnection().define('ArticleTagMapping', {
     guid: DataTypes.STRING,
-    name: DataTypes.STRING,
-    createdDate: DataTypes.DATE,
-    modifiedDate: DataTypes.DATE
+    articleId: DataTypes.INTEGER,
+    tagId: DataTypes.INTEGER
 }, {
     timestamps: false,
     freezeTableName: true,
     tableName: dbConstants.tableNames.TagTableName
 });
-SqlConnection.removeAttributeId(TagModel)
+SqlConnection.removeAttributeId(ArticleTagMappingModel)
 
-module.exports = TagModel
+module.exports = ArticleTagMappingModel
